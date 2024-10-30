@@ -34,8 +34,8 @@ public class RecherchePopulationBorneService extends MenuService {
 			throw new ExceptionGlobal("Vous avez rentré une lettre au lieux d'un chiffre !");
 		}
 
-		int min = Integer.parseInt(saisieMin) * 1000;
-		int max = Integer.parseInt(saisieMax) * 1000;
+		int min = Integer.parseInt(saisieMin);
+		int max = Integer.parseInt(saisieMax);
 
 		if ( min<0 || max<0 || min>max ) {
 			throw new ExceptionGlobal("Vous avez rentré un chiffre qui n'est pas dans le scope demandé !");
@@ -43,17 +43,17 @@ public class RecherchePopulationBorneService extends MenuService {
 		
 		List<Ville> villes = rec.getVilles();
 
+		boolean depTrouve = false;
 		for (Ville ville : villes) {
-			boolean depTrouvé = false;
 			if (ville.getCodeDepartement().equalsIgnoreCase(choix)) {
-				depTrouvé = true;
+				depTrouve = true;
+				if (ville.getPopulation() >= min && ville.getPopulation() <= max){
+						System.out.println(ville);
+				}
 			}
-			if (depTrouvé == true && ville.getPopulation() >= min && ville.getPopulation() <= max) {
-					System.out.println(ville);
-			} else {
-				throw new ExceptionGlobal("Vous avez rentré un département inconnu !");
-			}
-
+		}
+		if (!depTrouve) {
+			throw new ExceptionGlobal("Vous avez rentré un département inconnu !");
 		}
 	}
 
