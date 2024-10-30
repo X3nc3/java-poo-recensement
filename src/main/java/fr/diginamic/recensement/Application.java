@@ -17,8 +17,7 @@ import fr.diginamic.recensement.utils.RecensementUtils;
 
 /**
  * Application de traitement des données de recensement de population
- * 
- * @param args
+ *
  */
 public class Application {
 

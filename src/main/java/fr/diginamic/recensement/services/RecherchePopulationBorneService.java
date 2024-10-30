@@ -44,13 +44,16 @@ public class RecherchePopulationBorneService extends MenuService {
 		List<Ville> villes = rec.getVilles();
 
 		for (Ville ville : villes) {
+			boolean depTrouvé = false;
 			if (ville.getCodeDepartement().equalsIgnoreCase(choix)) {
-				if (ville.getPopulation() >= min && ville.getPopulation() <= max) {
+				depTrouvé = true;
+			}
+			if (depTrouvé == true && ville.getPopulation() >= min && ville.getPopulation() <= max) {
 					System.out.println(ville);
-				}
 			} else {
 				throw new ExceptionGlobal("Vous avez rentré un département inconnu !");
 			}
+
 		}
 	}
 
